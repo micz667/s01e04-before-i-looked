@@ -13,13 +13,11 @@ export type DigestRow = {
 };
 
 // `null` means the night file is absent. An empty file is `{ rows: [], badLines: 0 }`.
+// `counts` is parsed lines, not jobs: a later ok does not erase an earlier retry.
 export type NightDigest = {
   rows: DigestRow[];
   badLines: number;
+  counts: { ok: number; retry: number; fail: number };
 };
 
-export function readNight(runsDir: string, night: string): NightDigest | null {
-  void runsDir;
-  void night;
-  throw new Error('readNight is not implemented');
-}
+export { readNight } from './read.js';
